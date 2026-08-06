@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'Akkurat Mono';
+  src: url('https://othercollective.github.io/css/Akkurat-Mono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --medium-neutral: #DFD3D0;
+  --light-neutral: #EAE2DC;
+  --dark-neutral: #D1B2AA;
+  --type: #180602;
+  --subtitle-type: #18060266;
+}
+
+* { box-sizing: border-box; }
+
+html { background-color: var(--medium-neutral); }
+body { margin: 0; }
+
+#header {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+#header .stack {
+  margin-block: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#scrollCue {
+    --jelly-stroke-width: 1px;
+  --jelly-stroke: var(--dark-neutral);
+
+}
+.cue-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  margin-bottom: 2.5rem;   /* moved off #scrollCue, see note */
+}
+
+.sonar {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.sonar::before,
+.sonar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 10px solid var(--light-neutral);
+  animation: sonar 2.4s cubic-bezier(0.2, 0.6, 0.35, 1) infinite;
+}
+
+.sonar::after { animation-delay: -1.2s; }
+.sonar.is-done { opacity: 0; }
+
+#scrollCue {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes sonar {
+  0%   { scale: 1;    opacity: 0.5; }
+  100% { scale: 2.15; opacity: 0;   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonar { display: none; }
+}
+
+jelly-card {
+  --jelly-fill: var(--light-neutral); 
+  --jelly-color-border-default: var(--dark-neutral);
+  color: var(--type)
+}
+
+corner-card, jelly-icon-button {
+  --jelly-fill: var(--light-neutral);
+  --jelly-color-border-default: var(--dark-neutral);
+  color: var(--type);
+}
+
+#nameCard {
+  width: min(300px, 50vw);
+  aspect-ratio: 1.2 / 1;
+  --jelly-corners: 50px 180px 100px 50px;   /* TL TR BR BL */
+}
+
+#nameCard::part(card) {
+  height: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nameCard svg { 
+  width: 85%; 
+  display: block; 
+}
+
+#descCard {
+  --jelly-fill: transparent; 
+  margin-top: 3rem;
+  text-align: center;
+  --jelly-color-border-default: var(--dark-neutral);
+  color: var(--subtitle-type);
+  --jelly-radius: 150px;
+  font-family: 'Akkurat Mono', monospace;
+}
+

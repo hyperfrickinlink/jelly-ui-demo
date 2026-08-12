@@ -1,22 +1,85 @@
 @font-face {
   font-family: 'Akkurat Mono';
-  src: url('./Akkurat-Mono.ttf') format('truetype');
+  src: url('./src/type/Akkurat-Mono.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'SF Pro Display Regular';
+  src: url('./src/type/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Regular Italic';
+  src: url('./src/type/SF-Pro-Display-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Medium';
+  src: url('./src/type/SF-Pro-Display-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Medium Italic';
+  src: url('./src/type/SF-Pro-Display-MediumItalic.otf') format('opentype');
+  font-weight: 500 ;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Bold';
+  src: url('./src/type/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Bold Italic';
+  src: url('./src/type/SF-Pro-Display-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*
+ * Default (dusty pink) scheme. Every one of these is re-written at runtime as
+ * the visitor scrolls through a [data-theme] section - see wireSectionThemes()
+ * in script.js - so anything that should follow the active scheme must read
+ * from these vars rather than hard-coding a color.
+ */
 :root {
   --medium-neutral: #DFD3D0;
   --light-neutral: #EAE2DC;
   --dark-neutral: #D1B2AA;
+  --pale-neutral: #F7F0EC;
   --type: #180602;
-  --subtitle-type: #18060266;
+  --subtitle-type: #18060285;
+  --accent: #D1B2AA;
+  --accent-label: rgba(24, 6, 2, 0.66);
 }
 
 * { box-sizing: border-box; }
 
-html { background-color: var(--medium-neutral); }
+/* --accent is theme-driven (see wireSectionThemes() in script.js), so an
+   inline link's color always matches whichever section it's scrolled into */
+a, a:visited {
+  color: var(--accent);
+}
+
+html { background-color: var(--medium-neutral); padding: 0 2rem;}
 body { margin: 0; }
 
 #header {
@@ -120,5 +183,492 @@ corner-card, jelly-icon-button {
   color: var(--subtitle-type);
   --jelly-radius: 150px;
   font-family: 'Akkurat Mono', monospace;
+}
+
+#caseStudy {
+  padding-top: 4rem;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  min-width: 75%;
+}
+
+jelly-card h2 {
+  font-family: "ogg", sans-serif;
+font-weight: 400;
+font-style: normal;
+font-size: 2rem;
+}
+
+jelly-card p {
+  font-family: 'SF Pro Display Regular', sans-serif;
+font-size: 1rem;
+color: var(--type);
+opacity: 0.66;
+}
+
+jelly-chip {
+  font-family: 'Akkurat Mono', monospace;font-weight: 400;
+font-style: normal;
+font-size: .8rem;
+--jelly-fill: var(--light-neutral);
+--jelly-label: var(--subtitle-type);
+--jelly-stroke-width: 1px;
+--jelly-stroke: var(--dark-neutral);
+
+}
+
+/*
+ * ---------- project template: logo + chips, then a bento with subsections
+ * Reusable per case study - duplicate the .project block (with its own logo,
+ * chips and .project-bento content) for each additional project.
+ */
+
+.project {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* shared with .project-bento (a jelly-card reads this same var for its
+     own inner padding), so the header's content lines up with the card's */
+  --jelly-card-padding-inline: 30px;
+}
+
+.project + .project {
+  margin-top: 8rem;
+}
+
+.project-header {
+  width: min(1400px, 100%);
+  padding-inline: var(--jelly-card-padding-inline);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 0 2rem;
+}
+
+.project-header {
+  align-items: flex-end;
+}
+
+.project-logo {
+  width: clamp(72px, 20%, 160px);
+  display: block;
+}
+
+.project-logo.showgirl-logo {
+  width: clamp(3rem, 26%, 16rem);
+  display: block;
+}
+
+.project-logo-placeholder {
+  width: clamp(72px, 20%, 160px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--dark-neutral);
+  border-radius: 12px;
+  background: var(--light-neutral);
+  color: var(--subtitle-type);
+  font-family: 'Akkurat Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.project-chips {
+  display: flex;
+  gap: .5rem;
+}
+
+.project-bento {
+  width: min(1400px, 100%);
+}
+
+.project-about-title {
+  margin: 0 0 1rem;
+  font-family: 'SF Pro Display Medium', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1.15;
+  color: var(--type);
+}
+
+.project-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0;
+}
+
+.project-desc {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.project-cta {
+  display: block;
+  flex: 0 0 auto;
+  width: fit-content;
+  margin: 0;
+  --jelly-fill: var(--accent);
+  --jelly-label: var(--accent-label);
+}
+
+@media (max-width: 640px) {
+  .project-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* the button shadow root redeclares its own font shorthand, so retarget
+   the exposed part rather than the (ineffective) host font-family */
+.project-cta::part(button) {
+  font-family: 'SF Pro Display Medium', sans-serif;
+  font-weight: 500;
+}
+
+.reveal-card {
+  display: block;
+  margin-top: 2.5rem;
+  --jelly-fill: var(--pale-neutral);
+  --jelly-color-border-default: var(--dark-neutral);
+  --jelly-radius: 24px;
+  --jelly-card-padding-block: 2rem;
+  --jelly-card-padding-inline: 2rem;
+}
+
+/* the shadow root's .card is the real box, so the grid has to live there */
+.reveal-card::part(card) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.reveal-media {
+  margin: 0;
+  aspect-ratio: 1416 / 720;
+  cursor: pointer;
+  --jelly-fill: transparent;
+  --jelly-color-border-default: transparent;
+  /* matches .reveal-media-placeholder / .collage-card so every image
+     nested in a sub-bento (--jelly-radius: 24px) uses the same radius */
+  --jelly-radius: 20px;
+  --jelly-card-padding-block: 0;
+  --jelly-card-padding-inline: 0;
+}
+
+.reveal-media::part(card) {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  padding: 0;
+}
+
+.reveal-media .shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.reveal-media .shot.is-active { opacity: 1; }
+
+.reveal-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.reveal-title,
+.value-add-title {
+  margin: 0;
+  font-family: 'SF Pro Display Medium', sans-serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--type);
+}
+
+.reveal-toggle {
+  width: 100%;
+  max-width: 240px;
+  font-family: 'Akkurat Mono', monospace;
+  font-weight: 500;
+  --jelly-track: var(--dark-neutral);
+  /* pale-neutral, not light-neutral: matches the sub-bento fill, not the
+     bento's own - the active chip should read as the same recessed surface */
+  --jelly-pill: var(--pale-neutral);
+  --jelly-label: var(--subtitle-type);
+  --jelly-label-on: var(--type);
+}
+
+.reveal-body {
+  margin: 0;
+}
+
+.value-add {
+  margin-top: 2.5rem;
+  padding-inline: 0.5rem;
+}
+
+.value-add-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.value-add ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: 'SF Pro Display Regular', sans-serif;
+  color: var(--type);
+  opacity: 0.66;
+}
+
+.value-add li::marker { color: var(--dark-neutral); }
+
+.reveal-media-placeholder {
+  margin: 0;
+  aspect-ratio: 1416 / 720;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--dark-neutral);
+  border-radius: 20px;
+  background: var(--light-neutral);
+  color: var(--subtitle-type);
+  font-family: 'Akkurat Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+/* three plain, flat, unrotated cards cascading top-left -> mid-right ->
+   bottom-left, each slightly overlapping the previous - standing in for a
+   single flat screenshot. The wide one is sized like the scripted logo. */
+.reveal-collage {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.collage-card {
+  position: absolute;
+  cursor: pointer;
+  /* matches .reveal-media / .reveal-media-placeholder */
+  --jelly-radius: 20px;
+  --jelly-fill: var(--light-neutral);
+  --jelly-color-border-default: var(--dark-neutral);
+}
+
+.collage-card::part(card) {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.collage-placeholder {
+  font-family: 'Akkurat Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--subtitle-type);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/*
+ * A real (flat, un-rounded) photo dropped into any reveal/collage slot -
+ * unlike the before/after .shot screenshots, these don't have rounded
+ * corners baked into the file, so border-radius does it here instead.
+ * Reuse this class for every future placeholder image - matches --jelly-radius
+ * so it always rounds to whatever its containing card is using.
+ */
+.reveal-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--jelly-radius, 20px);
+  cursor: pointer;
+}
+
+.collage-card--top-left {
+  width: 50%;
+  aspect-ratio: 1;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.collage-card--mid-right {
+  width: 56%;
+  aspect-ratio: 16 / 9;
+  top: 27%;
+  left: 44%;
+  z-index: 2;
+}
+
+.collage-card--bottom-left {
+  width: 50%;
+  aspect-ratio: 1;
+  top: calc(50% + 5px);
+  left: 13%;
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  /* imagery on top, then (if present) the toggle, title and body */
+  .reveal-card::part(card) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .project {
+    --jelly-card-padding-inline: 20px;
+  }
+
+  .project-bento {
+    --jelly-card-padding-block: 22px;
+  }
+
+  .reveal-card {
+    --jelly-card-padding-block: 1.5rem;
+    --jelly-card-padding-inline: 1.5rem;
+    margin-top: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html { padding: 0 1rem; }
+
+  #caseStudy { padding-top: 2.5rem; }
+
+  .project-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-chips { flex-wrap: wrap; }
+
+  .reveal-card {
+    --jelly-card-padding-block: 1.15rem;
+    --jelly-card-padding-inline: 1.15rem;
+  }
+
+  .reveal-card::part(card) { gap: 1rem; }
+
+  #lightbox {
+    --jelly-dialog-padding: 16px;
+  }
+
+  .lightbox-img {
+    max-height: min(58vh, 640px);
+  }
+}
+
+/* ---------- lightbox ---------- */
+
+#lightbox {
+  --jelly-dialog-width: min(1300px, 94vw);
+  --jelly-dialog-padding: 20px;
+  --jelly-color-background-surface: var(--pale-neutral);
+  --jelly-shadow-overlay: none;
+}
+
+.lightbox-media {
+  margin: 0 0 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: min(78vh, 900px);
+  border-radius: 20px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* .lightbox-img / .lightbox-placeholder both set an explicit display, which
+   (being author-origin) beats the UA [hidden]{display:none} rule at equal
+   specificity - same fix as #lightboxToggle[hidden] below */
+.lightbox-img[hidden],
+.lightbox-placeholder[hidden] {
+  display: none;
+}
+
+.lightbox-toggle {
+  display: flex;
+  margin: 0 auto;
+}
+
+/* jelly-segmented's own :host{display:inline-flex} is author-origin, so it
+   beats the UA [hidden]{display:none} rule on specificity ties - same class
+   of fix as the font-weight override above, just for display this time */
+#lightboxToggle[hidden] {
+  display: none;
+}
+
+.lightbox-placeholder {
+  width: min(600px, 100%);
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--dark-neutral);
+  border-radius: 20px;
+  background: var(--light-neutral);
+  color: var(--subtitle-type);
+  font-family: 'Akkurat Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.lightbox-counter {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-family: 'Akkurat Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--subtitle-type);
+}
+
+/* ---------- closing section: full-screen CTA, default scheme only ---------- */
+
+#footer {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.footer-cta {
+  --jelly-fill: var(--accent);
+  --jelly-label: var(--accent-label);
+}
+
+/* same fix as .project-cta: the button shadow root redeclares its own font
+   shorthand, so retarget the exposed part rather than the host font-family */
+.footer-cta::part(button) {
+  font-family: 'SF Pro Display Medium', sans-serif;
+  font-weight: 500;
+  font-size: 1.15rem;
 }
 

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pen</title>
+    <link rel="stylesheet" href="https://use.typekit.net/hxa3shg.css">
   </head>
   <body>
     <jelly-theme mode="auto">
@@ -33,8 +34,211 @@
         </div>
       </div>
 
-      <section id="about">...</section>
-      
+      <div id="caseStudy">
+
+  <div class="project" data-theme="scripted">
+    <div class="project-header">
+      <img class="project-logo" src="./src/img/scripted.png" alt="Scripted logo">
+      <div class="project-chips">
+        <jelly-chip>BRAND</jelly-chip><jelly-chip>UI/UX</jelly-chip><jelly-chip>FRONTEND DEV</jelly-chip>
+      </div>
+    </div>
+
+    <jelly-card class="project-bento" squish size="large">
+      <h3 class="project-about-title">A simple, friendly, beautiful EMR for pharmacists.</h3>
+      <div class="project-intro">
+        <p class="project-desc">Sole designer + lead frontend specialist across a pharmacy EMR's full UI, leading a team of 5 engineers. Shipped a full-application redesign that introduced a bespoke, contemporary brand design language and made core workflows up to 4x faster for end users.</p>
+
+        <jelly-button class="project-cta" data-href="https://scripted.co/introducing-v4/" size="large">
+          Learn more on scripted.co
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 2H2C1.44772 2 1 2.44772 1 3V11C1 11.5523 1.44772 12 2 12H10C10.5523 12 11 11.5523 11 11V9"
+                  stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 1H12V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 1L5.5 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </jelly-button>
+      </div>
+
+  <jelly-card class="reveal-card" data-reveal>
+    <jelly-card class="reveal-media" squish>
+      <img class="shot is-active" data-shot="before"
+           src="./src/img/appointments%20(main%20screen)%20BEFORE.png"
+           alt="The Appointments screen before the redesign">
+      <img class="shot" data-shot="after"
+           src="./src/img/appointments%20(main%20screen)%20AFTER.png"
+           alt="The Appointments screen after the redesign">
+    </jelly-card>
+    <div class="reveal-side">
+      <jelly-segmented class="reveal-toggle" size="small" value="before"
+                       label="Show the Appointments screen before or after the redesign">
+        <jelly-segment value="before">BEFORE</jelly-segment>
+        <jelly-segment value="after">AFTER</jelly-segment>
+      </jelly-segmented>
+      <h3 class="reveal-title">UX Overhaul</h3>
+      <p class="reveal-body">Before, Scripted had a reputation for being powerful, but confusing.<br><br>In v4, I designed and implemented beautiful branded layouts with clear typographical hierarchy and consistent design principles, refactoring every screen in the EMR. I led implementation, but also designed the system in such a way that my team of 5 engineers could build within our new brand standard without me needing to personally polish every PR. And most importantly, users started raving about Scripted finally being simple in the months following deployment.</p>
+    </div>
+  </jelly-card>
+
+  <jelly-card class="reveal-card" data-reveal>
+    <jelly-card class="reveal-media" squish>
+      <img class="shot is-active" data-shot="before"
+           src="./src/img/encounters%20(core%20workflow)%20BEFORE.png"
+           alt="The Encounters workflow before the redesign">
+      <img class="shot" data-shot="after"
+           src="./src/img/encounters%20(core%20workflow)%20AFTER.png"
+           alt="The Encounters workflow after the redesign">
+    </jelly-card>
+    <div class="reveal-side">
+      <jelly-segmented class="reveal-toggle" size="small" value="before"
+                       label="Show the Encounters workflow before or after the redesign">
+        <jelly-segment value="before">BEFORE</jelly-segment>
+        <jelly-segment value="after">AFTER</jelly-segment>
+      </jelly-segmented>
+      <h3 class="reveal-title">Core Workflows</h3>
+      <p class="reveal-body">This redesign also streamlined the core Encounter workflow from a time-consuming multi-pager to a tidy one-screen modal that intuitively expands and collapses as the user works. We saved users a significant amount of time for every patient encounter.<br><br>I'm particularly proud of the "stoplight" icons in every section. Red means you're missing some required data, green means go. It's much easier to see how much work is left to be done.</p>
+    </div>
+  </jelly-card>
+
+  <jelly-card class="reveal-card">
+    <div class="reveal-collage" data-gallery>
+      <jelly-card class="collage-card collage-card--top-left" squish>
+        <img class="reveal-photo" src="./src/img/pharmgirl.png" alt="3D-rendered patient-facing brand character">
+      </jelly-card>
+      <jelly-card class="collage-card collage-card--mid-right" squish>
+        <img class="reveal-photo" src="./src/img/scriptedlogo.png" alt="The Scripted logo">
+      </jelly-card>
+      <jelly-card class="collage-card collage-card--bottom-left" squish>
+        <img class="reveal-photo" src="./src/img/locator.png" alt="The 50-state pharmacy locator tool">
+      </jelly-card>
+    </div>
+    <div class="reveal-side">
+      <h3 class="reveal-title">Brand and Web UI</h3>
+      <p class="reveal-body">The entire Scripted brand is my design, from the logo to the color scheme to the layouts and interactions.<br><br>Our core application UI is beautiful, neutral, and information-dense. On our patient-facing website, we got to have a little more fun.<br><br>Scripted's patient-facing branding is in the same vocabulary as the clinical app, but is augmented with notes of digital brutalism and playful 3D animation rendered in browser.<br><br>I led the entire implementation, from webdev to print to motion graphics and everything in between. I also implemented and maintain key infrastructure like dynamically-generated backend-integrated per-pharmacy landing pages and our 50-state pharmacy locator.</p>
+    </div>
+  </jelly-card>
+
+  <section class="value-add">
+    <h3 class="value-add-title">More details on my work at Scripted</h3>
+    <ul>
+      <li>Architected and shipped Claude-powered agentic workflows in daily engineering practice: custom Claude projects with rich codebase context, MCP server integrations connecting to customer and product data, SOPs and playbooks, and agent pipelines targeting self-authored product documentation.</li>
+      <li>Designed, developed, and deployed business-critical web applications independently: backend-integrated customer onboarding automations reducing onboarding timelines from four weeks to five days; a compliance-focused insurance pricing webapp supporting pharmacy billing accuracy across 100+ regional markets.</li>
+      <li>Built and implemented a generative SEO strategy using dynamic JavaScript + WordPress landing pages: 6.9M impressions and 16K organic clicks in 12 months, zero paid advertising.</li>
+      <li>Technical stack: Node, React, Typescript, AWS, APIs, SQL, Python, LLMs/Claude, Laravel, PHP, Figma.</li>
+
+    </ul>
+  </section>
+    </jelly-card>
+  </div>
+
+  <div class="project" data-theme="delta">
+    <div class="project-header">
+      <img class="project-logo" src="./src/img/delta_w_r.png" alt="Delta logo">
+      <div class="project-chips">
+        <jelly-chip>UI/UX</jelly-chip><jelly-chip>FRONTEND DEV</jelly-chip><jelly-chip>BACKEND DEV</jelly-chip>
+      </div>
+    </div>
+
+    <jelly-card class="project-bento" squish size="large">
+      <h3 class="project-about-title">An app turning real-world data into accurate rush predictions at Delta's most premium airport lounge.</h3>
+      <div class="project-intro">
+        <p class="project-desc">Designed, built, and shipped a wall-mounted display that used a propietary algorithm ingesting real-world flight and ticket sale data to predict when patrons were likely to visit the Delta One Lounge at Boston Logan. Accurate within five covers 80% of the time, automatically updated every 15 minutes. Deployed and used in live kitchen operations.</p>
+
+       <jelly-button class="project-cta" data-href="https://lounge-predictor-620f9.web.app/" size="large">
+          View a live demo
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 2H2C1.44772 2 1 2.44772 1 3V11C1 11.5523 1.44772 12 2 12H10C10.5523 12 11 11.5523 11 11V9"
+                  stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 1H12V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 1L5.5 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </jelly-button>
+      </div>
+
+      <jelly-card class="reveal-card">
+        <img class="reveal-photo" src="./src/img/loungepredict.png" alt="A screenshot of the live Delta lounge predictor.">
+        <div class="reveal-side">
+          <h3 class="reveal-title">Turning Plane Ticket Sales into "Four Parties Arriving within 15mins"</h3>
+          <p class="reveal-body">The front-of-house team at the Boston Logan Delta One Lounge was struggling with managing staff breaks and ensuring adequate coverage during rushes. But they had all the information they needed: only patrons with Delta One tickets are allowed access to the lounge, and they got a daily report of tickets sold via email.<br><br>Using historical cover data and real-world counts of Delta One flight tickets sold, I was able to train a custom algorithm that predicted when guests would arrive based on the departure times of flights and a model of historical distribution of covers throughout the day.<br><br>After careful tuning, it was shockingly accurate: predictions within five covers 80% of the time for every 15 minute chunk of every day.</p>
+        </div>
+      </jelly-card>
+
+      <jelly-card class="reveal-card">
+        <img class="reveal-photo" src="./src/img/predictorinkitchen.png" alt="A screenshot of the live Delta lounge predictor.">
+        <div class="reveal-side">
+          <h3 class="reveal-title">UX Optimized for Live Lounge Operations</h3>
+          <p class="reveal-body">Working with busy kitchen staff presented unique UX challenges.<br><br>Kitchen staff with busy hands can't fiddle with an iPad screen, and waitstaff need to be able to understand if a flight was delayed or cancelled at a glance while still running food.<br><br>I meticulously designed the UX for this app to require no human interaction while communicating critical updates clearly. To add the day's flight data, all the team needed to do was forward the email with ticket sales to my mailhook, which triggers a cloud function that queries FlightAware to get precise departure times and predict the day's spread-of-service.<br><br>FlightAware's API also pushed updates on flight delays or cancellations, which triggered full-screen color-changes and revised predictions to keep the staff aware of an unexpected rush with plenty of notice.</p>
+        </div>
+      </jelly-card>
+    </jelly-card>
+  </div>
+
+  <div class="project" data-theme="showgirl">
+    <div class="project-header">
+      <img class="project-logo showgirl-logo" src="./src/img/showgirl-bingo-logo-under-bright-lights-pearlescent.svg" alt="...">
+      <div class="project-chips">
+                <jelly-chip>BRAND</jelly-chip><jelly-chip>UI/UX</jelly-chip><jelly-chip>BACKEND DEV</jelly-chip><jelly-chip>FRONTEND DEV</jelly-chip><jelly-chip>MARKETING</jelly-chip>
+
+      </div>
+    </div>
+
+    <jelly-card class="project-bento" squish size="large">
+      <h3 class="project-about-title">The ultimate Taylor Swift album-launch bingo board, co-authored by 3,000 Swifties in over 60 countries in 13 days.</h3>
+      <div class="project-intro">
+        <p class="project-desc">In the days leading up to the release of Taylor Swift's latest album drop, I launched a free online game where Swifties around the world could predict what would happen on the album. The most popular predictions, voted on by Swifties, became the squares on a playable bingo board for their first listen.</p>
+
+        <jelly-button class="project-cta" data-href="https://showgirl.bingo/" size="large">
+          Visit Showgirl Bingo
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 2H2C1.44772 2 1 2.44772 1 3V11C1 11.5523 1.44772 12 2 12H10C10.5523 12 11 11.5523 11 11V9"
+                  stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 1H12V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 1L5.5 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </jelly-button>
+      </div>
+
+      <jelly-card class="reveal-card">
+        <img class="reveal-photo" src="./src/img/showgirlwinners.png" alt="...">
+        <div class="reveal-side">
+          <h3 class="reveal-title">Swiftie-Approved, With Over 15,000 Votes Cast</h3>
+          <p class="reveal-body">Released just 13 days before <i>The Life of a Showgirl</i>, Swiftie response to this app was mind-blowing. On album release day, more than a thousand players visited the board and created an account on Showgirl Bingo (not required to play).<br><br>For users who created an account, retention and engagement were great. The average user voted on 5 different predictions, and 1 in 5 contributed their own. The average user returned multiple times after their first unique pageview.<br><br>Swifties were also vocal about features they needed: commenters on reddit demanded a "personalize" function allowing their posts they voted on to directly augment their personal board rather than relying on overall vote winners<br><br>The app was also shared by Swiftie influencers and <a href="https://www.youtube.com/watch?v=ne1aAsQ-ozk&t=1430s" target="_blank">covered by Swiftie YouTubers</a> like Kailey's Corner.</p>
+        </div>
+      </jelly-card>
+
+      <jelly-card class="reveal-card">
+       <img class="reveal-photo" src="./src/img/showgirl-response-collage.png" alt="...">
+        <div class="reveal-side">
+          <h3 class="reveal-title">Full Stack Engineering, Branding, and Marketing (Hyli's Version)</h3>
+          <p class="reveal-body">I developed Showgirl Bingo end-to-end in about two and a half weeks' worth of evenings and weekends.<br><br>I did EVERYTHING myself - created wireframes based on album vinyl color variants in Figma, wrote and deployed an MVP version for pre-release playtesting and feedback, rapidly iterated fan-demanded features, and marketed the app to Swifties across multiple social channels and email.<br><br>At midnight on album release day, refreshing my Firebase analytics to see 1,000 people playing concurrently on launch was one of my proudest accomplishments as an engineer.</p>
+        </div>
+      </jelly-card>
+    </jelly-card>
+  </div>
+</div>
+
+      <div id="footer" data-theme="default">
+        <jelly-button id="footerCta" class="footer-cta" data-href="mailto:hylialexandrastrange@gmail.com" size="large">
+          <svg width="18" height="14" viewBox="0 0 231 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M46.3867 59.1797C44.4336 59.1797 42.806 58.5286 41.5039 57.2266C40.2669 55.8594 39.6484 54.1992 39.6484 52.2461C39.6484 50.3581 40.2669 48.763 41.5039 47.4609C42.806 46.1589 44.4336 45.5078 46.3867 45.5078H109.375C111.263 45.5078 112.858 46.1589 114.16 47.4609C115.527 48.763 116.211 50.3581 116.211 52.2461C116.211 54.1992 115.527 55.8594 114.16 57.2266C112.858 58.5286 111.263 59.1797 109.375 59.1797H46.3867ZM46.3867 85.2539C44.4336 85.2539 42.806 84.6029 41.5039 83.3008C40.2669 81.9336 39.6484 80.306 39.6484 78.418C39.6484 76.5299 40.2669 74.9349 41.5039 73.6328C42.806 72.2656 44.4336 71.582 46.3867 71.582H92.4805C94.3685 71.582 95.9635 72.2656 97.2656 73.6328C98.6328 74.9349 99.3164 76.5299 99.3164 78.418C99.3164 80.306 98.6328 81.9336 97.2656 83.3008C95.9635 84.6029 94.3685 85.2539 92.4805 85.2539H46.3867ZM167.285 87.8906C162.988 87.8906 159.049 86.849 155.469 84.7656C151.953 82.6172 149.121 79.7852 146.973 76.2695C144.889 72.6888 143.848 68.75 143.848 64.4531C143.848 60.1562 144.889 56.25 146.973 52.7344C149.121 49.1536 151.953 46.3216 155.469 44.2383C159.049 42.0898 162.988 41.0156 167.285 41.0156C171.582 41.0156 175.488 42.0898 179.004 44.2383C182.52 46.3216 185.319 49.1536 187.402 52.7344C189.551 56.25 190.625 60.1562 190.625 64.4531C190.625 68.75 189.551 72.6888 187.402 76.2695C185.319 79.7852 182.52 82.6172 179.004 84.7656C175.488 86.849 171.582 87.8906 167.285 87.8906ZM30.6641 179.785C20.4427 179.785 12.7604 177.246 7.61718 172.168C2.53905 167.155 -7.62939e-06 159.635 -7.62939e-06 149.609V30.2734C-7.62939e-06 20.1823 2.53905 12.6302 7.61718 7.61719C12.7604 2.53906 20.4427 0 30.6641 0H199.609C209.896 0 217.578 2.53906 222.656 7.61719C227.734 12.6953 230.273 20.2474 230.273 30.2734V149.609C230.273 159.635 227.734 167.155 222.656 172.168C217.578 177.246 209.896 179.785 199.609 179.785H30.6641ZM30.8594 164.062H199.414C204.232 164.062 207.943 162.793 210.547 160.254C213.216 157.65 214.551 153.809 214.551 148.73V31.1523C214.551 26.0742 213.216 22.2331 210.547 19.6289C207.943 17.0247 204.232 15.7227 199.414 15.7227H30.8594C25.9766 15.7227 22.2331 17.0247 19.6289 19.6289C17.0247 22.2331 15.7226 26.0742 15.7226 31.1523V148.73C15.7226 153.809 17.0247 157.65 19.6289 160.254C22.2331 162.793 25.9766 164.062 30.8594 164.062Z" fill="currentColor"/>
+          </svg>
+          Drop me a line
+        </jelly-button>
+      </div>
+
+      <jelly-dialog id="lightbox" label="Screenshot preview">
+        <div class="lightbox-media">
+          <img class="lightbox-img" src="" alt="" hidden>
+          <div class="lightbox-placeholder" hidden>Image placeholder</div>
+        </div>
+        <jelly-segmented id="lightboxToggle" class="reveal-toggle lightbox-toggle" size="medium" value="before"
+                         label="Compare before and after">
+          <jelly-segment value="before">BEFORE</jelly-segment>
+          <jelly-segment value="after">AFTER</jelly-segment>
+        </jelly-segmented>
+        <p class="lightbox-counter" hidden></p>
+      </jelly-dialog>
+
     </jelly-theme>
         <script type="module" src="./script.js"></script>
 

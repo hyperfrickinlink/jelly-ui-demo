@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <jelly-card class="project-bento" squish size="large">
+    <div class="project-bento">
       <h3 class="project-about-title">A simple, friendly, beautiful EMR for pharmacists.</h3>
       <div class="project-intro">
         <p class="project-desc">Sole designer + lead frontend specialist across a pharmacy EMR's full UI, leading a team of 5 engineers. Shipped a full-application redesign that introduced a bespoke, contemporary brand design language and made core workflows up to 4x faster for end users.</p>
@@ -60,7 +60,7 @@
         </jelly-button>
       </div>
 
-  <jelly-card class="reveal-card" data-reveal>
+  <div class="reveal-card" data-reveal>
     <jelly-card class="reveal-media" squish>
       <img class="shot is-active" data-shot="before"
            src="./src/img/appointments%20(main%20screen)%20BEFORE.png"
@@ -78,9 +78,9 @@
       <h3 class="reveal-title">UX Overhaul</h3>
       <p class="reveal-body">Before, Scripted had a reputation for being powerful, but confusing.<br><br>In v4, I designed and implemented beautiful branded layouts with clear typographical hierarchy and consistent design principles, refactoring every screen in the EMR. I led implementation, but also designed the system in such a way that my team of 5 engineers could build within our new brand standard without me needing to personally polish every PR. And most importantly, users started raving about Scripted finally being simple in the months following deployment.</p>
     </div>
-  </jelly-card>
+  </div>
 
-  <jelly-card class="reveal-card" data-reveal>
+  <div class="reveal-card" data-reveal>
     <jelly-card class="reveal-media" squish>
       <img class="shot is-active" data-shot="before"
            src="./src/img/encounters%20(core%20workflow)%20BEFORE.png"
@@ -98,9 +98,9 @@
       <h3 class="reveal-title">Core Workflows</h3>
       <p class="reveal-body">This redesign also streamlined the core Encounter workflow from a time-consuming multi-pager to a tidy one-screen modal that intuitively expands and collapses as the user works. We saved users a significant amount of time for every patient encounter.<br><br>I'm particularly proud of the "stoplight" icons in every section. Red means you're missing some required data, green means go. It's much easier to see how much work is left to be done.</p>
     </div>
-  </jelly-card>
+  </div>
 
-  <jelly-card class="reveal-card">
+  <div class="reveal-card">
     <div class="reveal-collage" data-gallery>
       <jelly-card class="collage-card collage-card--top-left" squish>
         <img class="reveal-photo" src="./src/img/pharmgirl.png" alt="3D-rendered patient-facing brand character">
@@ -116,7 +116,7 @@
       <h3 class="reveal-title">Brand and Web UI</h3>
       <p class="reveal-body">The entire Scripted brand is my design, from the logo to the color scheme to the layouts and interactions.<br><br>Our core application UI is beautiful, neutral, and information-dense. On our patient-facing website, we got to have a little more fun.<br><br>Scripted's patient-facing branding is in the same vocabulary as the clinical app, but is augmented with notes of digital brutalism and playful 3D animation rendered in browser.<br><br>I led the entire implementation, from webdev to print to motion graphics and everything in between. I also implemented and maintain key infrastructure like dynamically-generated backend-integrated per-pharmacy landing pages and our 50-state pharmacy locator.</p>
     </div>
-  </jelly-card>
+  </div>
 
   <section class="value-add">
     <h3 class="value-add-title">More details on my work at Scripted</h3>
@@ -128,7 +128,7 @@
 
     </ul>
   </section>
-    </jelly-card>
+    </div>
   </div>
 
   <div class="project" data-theme="delta">
@@ -139,7 +139,7 @@
       </div>
     </div>
 
-    <jelly-card class="project-bento" squish size="large">
+    <div class="project-bento">
       <h3 class="project-about-title">An app turning real-world data into accurate rush predictions at Delta's most premium airport lounge.</h3>
       <div class="project-intro">
         <p class="project-desc">Designed, built, and shipped a wall-mounted display that used a propietary algorithm ingesting real-world flight and ticket sale data to predict when patrons were likely to visit the Delta One Lounge at Boston Logan. Accurate within five covers 80% of the time, automatically updated every 15 minutes. Deployed and used in live kitchen operations.</p>
@@ -155,22 +155,22 @@
         </jelly-button>
       </div>
 
-      <jelly-card class="reveal-card">
+      <div class="reveal-card">
         <img class="reveal-photo" src="./src/img/loungepredict.png" alt="A screenshot of the live Delta lounge predictor.">
         <div class="reveal-side">
           <h3 class="reveal-title">Turning Plane Ticket Sales into "Four Parties Arriving within 15mins"</h3>
           <p class="reveal-body">The front-of-house team at the Boston Logan Delta One Lounge was struggling with managing staff breaks and ensuring adequate coverage during rushes. But they had all the information they needed: only patrons with Delta One tickets are allowed access to the lounge, and they got a daily report of tickets sold via email.<br><br>Using historical cover data and real-world counts of Delta One flight tickets sold, I was able to train a custom algorithm that predicted when guests would arrive based on the departure times of flights and a model of historical distribution of covers throughout the day.<br><br>After careful tuning, it was shockingly accurate: predictions within five covers 80% of the time for every 15 minute chunk of every day.</p>
         </div>
-      </jelly-card>
+      </div>
 
-      <jelly-card class="reveal-card">
+      <div class="reveal-card">
         <img class="reveal-photo" src="./src/img/predictorinkitchen.png" alt="A screenshot of the live Delta lounge predictor.">
         <div class="reveal-side">
           <h3 class="reveal-title">UX Optimized for Live Lounge Operations</h3>
           <p class="reveal-body">Working with busy kitchen staff presented unique UX challenges.<br><br>Kitchen staff with busy hands can't fiddle with an iPad screen, and waitstaff need to be able to understand if a flight was delayed or cancelled at a glance while still running food.<br><br>I meticulously designed the UX for this app to require no human interaction while communicating critical updates clearly. To add the day's flight data, all the team needed to do was forward the email with ticket sales to my mailhook, which triggers a cloud function that queries FlightAware to get precise departure times and predict the day's spread-of-service.<br><br>FlightAware's API also pushed updates on flight delays or cancellations, which triggered full-screen color-changes and revised predictions to keep the staff aware of an unexpected rush with plenty of notice.</p>
         </div>
-      </jelly-card>
-    </jelly-card>
+      </div>
+    </div>
   </div>
 
   <div class="project" data-theme="showgirl">
@@ -182,7 +182,7 @@
       </div>
     </div>
 
-    <jelly-card class="project-bento" squish size="large">
+    <div class="project-bento">
       <h3 class="project-about-title">The ultimate Taylor Swift album-launch bingo board, co-authored by 3,000 Swifties in over 60 countries in 13 days.</h3>
       <div class="project-intro">
         <p class="project-desc">In the days leading up to the release of Taylor Swift's latest album drop, I launched a free online game where Swifties around the world could predict what would happen on the album. The most popular predictions, voted on by Swifties, became the squares on a playable bingo board for their first listen.</p>
@@ -198,22 +198,22 @@
         </jelly-button>
       </div>
 
-      <jelly-card class="reveal-card">
+      <div class="reveal-card">
         <img class="reveal-photo" src="./src/img/showgirlwinners.png" alt="...">
         <div class="reveal-side">
           <h3 class="reveal-title">Swiftie-Approved, With Over 15,000 Votes Cast</h3>
           <p class="reveal-body">Released just 13 days before <i>The Life of a Showgirl</i>, Swiftie response to this app was mind-blowing. On album release day, more than a thousand players visited the board and created an account on Showgirl Bingo (not required to play).<br><br>For users who created an account, retention and engagement were great. The average user voted on 5 different predictions, and 1 in 5 contributed their own. The average user returned multiple times after their first unique pageview.<br><br>Swifties were also vocal about features they needed: commenters on reddit demanded a "personalize" function allowing their posts they voted on to directly augment their personal board rather than relying on overall vote winners<br><br>The app was also shared by Swiftie influencers and <a href="https://www.youtube.com/watch?v=ne1aAsQ-ozk&t=1430s" target="_blank">covered by Swiftie YouTubers</a> like Kailey's Corner.</p>
         </div>
-      </jelly-card>
+      </div>
 
-      <jelly-card class="reveal-card">
+      <div class="reveal-card">
        <img class="reveal-photo" src="./src/img/showgirl-response-collage.png" alt="...">
         <div class="reveal-side">
           <h3 class="reveal-title">Full Stack Engineering, Branding, and Marketing (Hyli's Version)</h3>
           <p class="reveal-body">I developed Showgirl Bingo end-to-end in about two and a half weeks' worth of evenings and weekends.<br><br>I did EVERYTHING myself - created wireframes based on album vinyl color variants in Figma, wrote and deployed an MVP version for pre-release playtesting and feedback, rapidly iterated fan-demanded features, and marketed the app to Swifties across multiple social channels and email.<br><br>At midnight on album release day, refreshing my Firebase analytics to see 1,000 people playing concurrently on launch was one of my proudest accomplishments as an engineer.</p>
         </div>
-      </jelly-card>
-    </jelly-card>
+      </div>
+    </div>
   </div>
 </div>
 

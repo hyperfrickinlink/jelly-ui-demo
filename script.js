@@ -52,59 +52,6 @@ customElements.get('jelly-button').prototype.surfaceBorder = strokeFromVars;
 
 const JellyCard = customElements.get('jelly-card');
 
-/*
- * Why big cards get wonky corners.
- *
- * A jelly body samples its outline at config.samples (240) points spread
- * evenly by arc length, and the painter runs a smoothed bezier through
- * them. 240 is plenty for a chip or a button, but it's a fixed budget
- * shared across the whole perimeter - so the larger the card, the fewer
- * points land inside a corner. A 1400x2554 project bento with a 26px
- * radius gets ~1.25 points per corner, so the curve bends straight across
- * the corner instead of following it. Sub-bentos sit around 2.
- *
- * Scale the budget with the perimeter instead, so a corner keeps a usable
- * point density at any card size, capped so the physics and the per-frame
- * path work stay affordable on the very tall narrow-viewport layouts.
- */
-const CORNER_POINTS = 6;     // sample points wanted inside each corner arc
-const MAX_SAMPLES = 1400;
-
-function samplesForShape (width, height, radius) {
-  const r = Math.min(radius, Math.min(width, height) / 2);
-  if (!(r > 0)) return null;
-  const cornerArc = (Math.PI / 2) * r;
-  const perimeter = 2 * (width + height) - 8 * r + 2 * Math.PI * r;
-  return Math.max(240, Math.min(MAX_SAMPLES, Math.ceil(CORNER_POINTS * perimeter / cornerArc)));
-}
-
-/*
- * The base class's onShape is a no-op and jelly-card doesn't define one, so
- * this becomes the hook that both jelly-card and corner-card (through its
- * super.onShape call) run on every build and resize. corner-card's own
- * applyCorners then rebuilds the membrane again off the count set here.
- */
-JellyCard.prototype.onShape = function () {
-  const body = this.body;
-  if (!body) return;
-  const wanted = samplesForShape(body.width, body.height, body.radius);
-  if (wanted && body.config.samples !== wanted) {
-    body.config.samples = wanted;
-    body.resize(body.width, body.height, body.radius);   // rebuilds the membrane
-    this.requestFrame();
-  }
-};
-
-/*
- * Importing the package registers every component synchronously, which
- * upgrades and builds the jelly elements already in the document - so their
- * first (and, for anything whose size then settles, only) onShape call
- * happened just above, before the patch existed. applyShape re-runs onShape
- * solely when the canvas dimensions change, so catch the built ones up by
- * hand; everything that resizes later re-runs it on its own.
- */
-document.querySelectorAll('jelly-card').forEach((card) => card.onShape());
-
 // CSS border-radius overflow rule: if two radii on one edge exceed it, scale all four
 const clampRadii = (w, h, [tl, tr, br, bl]) => {
   const f = Math.min(1, w / (tl + tr), w / (bl + br), h / (tl + bl), h / (tr + br));
@@ -518,7 +465,7 @@ document.querySelectorAll('jelly-dialog').forEach(jellyifyDialogClose);
  * Wired by class + data-href so every .project-bento's CTA picks this up.
  */
 document.querySelectorAll('.project-cta[data-href]').forEach((cta) => {
-  // it also lives inside a project-bento squish jelly-card, whose pointerdown
+  // kept for any squish ancestor: such a card's pointerdown
   // would otherwise capture the pointer and swallow/retarget this click -
   // same fix as the reveal-media triggers and the on-page toggles
   cta.addEventListener('pointerdown', (event) => event.stopPropagation());

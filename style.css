@@ -69,6 +69,21 @@
   --subtitle-type: #18060285;
   --accent: #D1B2AA;
   --accent-label: rgba(24, 6, 2, 0.66);
+
+  /*
+   * Corner scale, outermost -> innermost: 26 / 16 / 8.
+   *
+   * The nested-corner rule (inner = outer - gap) only binds where the inner
+   * element actually sits in the outer one's corner with a uniform gap. In
+   * this layout that is just the image-filling-a-card cases and the lightbox,
+   * which are derived below. Sub-bentos sit mid-stack inside a bento - title
+   * and intro above, value-add below - so their corners never come near the
+   * bento's, and the rule does not apply between those two; they only need to
+   * step down for hierarchy. 8px also matches the ~6px corner already baked
+   * into the before/after screenshot PNGs, so CSS-rounded imagery and the
+   * screenshots finally read the same.
+   */
+  --image-radius: 8px;
 }
 
 * { box-sizing: border-box; }
@@ -201,7 +216,10 @@ font-style: normal;
 font-size: 2rem;
 }
 
-jelly-card p {
+/* .project-bento is a plain div (see its rule below), so it has to be named
+   here too - it no longer inherits these through the jelly-card selector */
+jelly-card p,
+.project-bento p {
   font-family: 'SF Pro Display Regular', sans-serif;
 font-size: 1rem;
 color: var(--type);
@@ -239,6 +257,8 @@ font-size: .8rem;
    * which beats anything merely inherited from this ancestor.
    */
   --bento-gutter: 30px;
+  --bento-radius: 26px;
+  --subbento-radius: 16px;
 }
 
 .project + .project {
@@ -275,7 +295,7 @@ font-size: .8rem;
   align-items: center;
   justify-content: center;
   border: 1.5px dashed var(--dark-neutral);
-  border-radius: 12px;
+  border-radius: var(--image-radius);
   background: var(--light-neutral);
   color: var(--subtitle-type);
   font-family: 'Akkurat Mono', monospace;
@@ -288,11 +308,36 @@ font-size: .8rem;
   gap: .5rem;
 }
 
+/*
+ * A plain panel rather than a jelly-card. A jelly body samples its outline at
+ * a fixed 240 points spread evenly by arc length, which is tuned for buttons
+ * and normal cards; at this one's ~7900px perimeter a 26px corner receives
+ * only ~1.25 of those points, so the bezier drawn through them cuts across
+ * the corner instead of following it. Verified against a stock library card
+ * with no project CSS: tall renders wonky, short renders clean. The sub-cards
+ * inside are far shorter, land well above that threshold, and stay jelly.
+ *
+ * Values below mirror what jelly-card size="large" was painting: fill, the
+ * 1px surface border, --jelly-radius 26px and its padding.
+ */
 .project-bento {
   width: min(1400px, 100%);
-  /* declared on the host itself so it overrides :host([size="large"]) */
-  --jelly-card-padding-inline: var(--bento-gutter);
+  background: var(--light-neutral);
+  border: 1px solid var(--dark-neutral);
+  color: var(--type);
+  /*
+   * One uniform gap on all four sides. The 1px border is a real box now (the
+   * jelly one was painted on canvas and took no layout space), so discount it
+   * and --bento-gutter stays the true panel-edge -> content distance that
+   * .project-header aligns against.
+   */
+  padding: calc(var(--bento-gutter) - 1px);
+  border-radius: var(--bento-radius);
+  font: 400 16.5px/1.55 'SF Pro Display Regular', sans-serif;
 }
+
+.project-bento > :first-child { margin-top: 0; }
+.project-bento > :last-child { margin-bottom: 0; }
 
 .project-about-title {
   margin: 0 0 1rem;
@@ -341,18 +386,18 @@ font-size: .8rem;
   font-weight: 500;
 }
 
+/*
+ * Also a plain panel, for the same sampling reason as .project-bento above -
+ * and these carried no squish, so no interaction is lost by dropping the
+ * component. The grid can live directly on the element now instead of having
+ * to reach the shadow root's .card through ::part.
+ */
 .reveal-card {
-  display: block;
   margin-top: 2.5rem;
-  --jelly-fill: var(--pale-neutral);
-  --jelly-color-border-default: var(--dark-neutral);
-  --jelly-radius: 24px;
-  --jelly-card-padding-block: 2rem;
-  --jelly-card-padding-inline: 2rem;
-}
-
-/* the shadow root's .card is the real box, so the grid has to live there */
-.reveal-card::part(card) {
+  background: var(--pale-neutral);
+  border: 1px solid var(--dark-neutral);
+  border-radius: var(--subbento-radius);
+  padding: 2rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
   align-items: center;
@@ -366,8 +411,8 @@ font-size: .8rem;
   --jelly-fill: transparent;
   --jelly-color-border-default: transparent;
   /* matches .reveal-media-placeholder / .collage-card so every image
-     nested in a sub-bento (--jelly-radius: 24px) uses the same radius */
-  --jelly-radius: 20px;
+     nested in a sub-bento uses the same radius */
+  --jelly-radius: var(--image-radius);
   --jelly-card-padding-block: 0;
   --jelly-card-padding-inline: 0;
 }
@@ -456,7 +501,7 @@ font-size: .8rem;
   align-items: center;
   justify-content: center;
   border: 1.5px dashed var(--dark-neutral);
-  border-radius: 20px;
+  border-radius: var(--image-radius);
   background: var(--light-neutral);
   color: var(--subtitle-type);
   font-family: 'Akkurat Mono', monospace;
@@ -476,7 +521,7 @@ font-size: .8rem;
   position: absolute;
   cursor: pointer;
   /* matches .reveal-media / .reveal-media-placeholder */
-  --jelly-radius: 20px;
+  --jelly-radius: var(--image-radius);
   --jelly-fill: var(--light-neutral);
   --jelly-color-border-default: var(--dark-neutral);
 }
@@ -502,15 +547,16 @@ font-size: .8rem;
  * A real (flat, un-rounded) photo dropped into any reveal/collage slot -
  * unlike the before/after .shot screenshots, these don't have rounded
  * corners baked into the file, so border-radius does it here instead.
- * Reuse this class for every future placeholder image - matches --jelly-radius
- * so it always rounds to whatever its containing card is using.
+ * Reuse this class for every future placeholder image. 20px is the shared
+ * inner radius, matching .reveal-media, .collage-card and the placeholder
+ * boxes - one step in from the 24px sub-bento that contains them.
  */
 .reveal-photo {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--jelly-radius, 20px);
+  border-radius: var(--image-radius);
   cursor: pointer;
 }
 
@@ -539,23 +585,18 @@ font-size: .8rem;
 }
 
 @media (max-width: 900px) {
-  /* imagery on top, then (if present) the toggle, title and body */
-  .reveal-card::part(card) {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-  }
-
   .project {
     --bento-gutter: 20px;
   }
 
-  .project-bento {
-    --jelly-card-padding-block: 22px;
-  }
+  /* padding and radius both derive from --bento-gutter above, so the uniform
+     gap and the nested-corner rule hold at this breakpoint automatically */
 
+  /* imagery on top, then (if present) the toggle, title and body */
   .reveal-card {
-    --jelly-card-padding-block: 1.5rem;
-    --jelly-card-padding-inline: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.5rem;
     margin-top: 1.75rem;
   }
 }
@@ -577,14 +618,11 @@ font-size: .8rem;
   }
 
   .project { --bento-gutter: 1rem; }
-  .project-bento { --jelly-card-padding-block: 1.25rem; }
 
   .reveal-card {
-    --jelly-card-padding-block: 1rem;
-    --jelly-card-padding-inline: 1rem;
+    padding: 1rem;
+    gap: 1rem;
   }
-
-  .reveal-card::part(card) { gap: 1rem; }
 
   .value-add { padding-inline: 0; }
 
@@ -638,6 +676,13 @@ font-size: .8rem;
   --jelly-dialog-padding: 20px;
   --jelly-color-background-surface: var(--pale-neutral);
   --jelly-shadow-overlay: none;
+  /*
+   * Here the nested-corner rule really does bind: the image spans the dialog's
+   * full content width flush against the top, so its corners sit exactly one
+   * padding in from the dialog's. Derived from the same two values, so it
+   * stays correct when the padding drops to 16px on mobile.
+   */
+  --jelly-dialog-radius: calc(var(--image-radius) + var(--jelly-dialog-padding));
 }
 
 .lightbox-media {
@@ -649,7 +694,7 @@ font-size: .8rem;
 .lightbox-img {
   max-width: 100%;
   max-height: min(78vh, 900px);
-  border-radius: 20px;
+  border-radius: var(--image-radius);
   display: block;
   user-select: none;
   -webkit-user-drag: none;
@@ -682,7 +727,7 @@ font-size: .8rem;
   align-items: center;
   justify-content: center;
   border: 1.5px dashed var(--dark-neutral);
-  border-radius: 20px;
+  border-radius: var(--image-radius);
   background: var(--light-neutral);
   color: var(--subtitle-type);
   font-family: 'Akkurat Mono', monospace;

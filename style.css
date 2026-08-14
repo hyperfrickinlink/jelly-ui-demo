@@ -230,9 +230,15 @@ font-size: .8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* shared with .project-bento (a jelly-card reads this same var for its
-     own inner padding), so the header's content lines up with the card's */
-  --jelly-card-padding-inline: 30px;
+  /*
+   * One source of truth for the section's horizontal inset, consumed by both
+   * .project-bento and .project-header below so the logo always lines up with
+   * the copy inside the card. It can't be set as --jelly-card-padding-inline
+   * here: the bento carries size="large", and the component's own
+   * :host([size="large"]) declares that variable directly on the element,
+   * which beats anything merely inherited from this ancestor.
+   */
+  --bento-gutter: 30px;
 }
 
 .project + .project {
@@ -241,7 +247,7 @@ font-size: .8rem;
 
 .project-header {
   width: min(1400px, 100%);
-  padding-inline: var(--jelly-card-padding-inline);
+  padding-inline: var(--bento-gutter);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -284,6 +290,8 @@ font-size: .8rem;
 
 .project-bento {
   width: min(1400px, 100%);
+  /* declared on the host itself so it overrides :host([size="large"]) */
+  --jelly-card-padding-inline: var(--bento-gutter);
 }
 
 .project-about-title {
@@ -538,7 +546,7 @@ font-size: .8rem;
   }
 
   .project {
-    --jelly-card-padding-inline: 20px;
+    --bento-gutter: 20px;
   }
 
   .project-bento {
@@ -553,24 +561,66 @@ font-size: .8rem;
 }
 
 @media (max-width: 480px) {
+  /*
+   * Horizontal insets nest html -> #caseStudy -> bento -> sub-bento, and they
+   * had drifted to four different widths (16 / 24 / 20 / 18.4px) that ate 157px
+   * of a 390px viewport. Now every level is the same 1rem step and the
+   * redundant one is gone: html already owns the outer gutter, so #caseStudy
+   * contributes none. .project-header keeps reading the same variable as the
+   * bento's inner padding, so the logo still lines up with the copy below it.
+   */
   html { padding: 0 1rem; }
 
-  #caseStudy { padding-top: 2.5rem; }
+  #caseStudy {
+    padding-inline: 0;
+    padding-top: 2.5rem;
+  }
 
+  .project { --bento-gutter: 1rem; }
+  .project-bento { --jelly-card-padding-block: 1.25rem; }
+
+  .reveal-card {
+    --jelly-card-padding-block: 1rem;
+    --jelly-card-padding-inline: 1rem;
+  }
+
+  .reveal-card::part(card) { gap: 1rem; }
+
+  .value-add { padding-inline: 0; }
+
+  /* logo holds the left, chips stack into right-justified rows beside it */
   .project-header {
-    flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 1.25rem;
   }
 
-  .project-chips { flex-wrap: wrap; }
-
-  .reveal-card {
-    --jelly-card-padding-block: 1.15rem;
-    --jelly-card-padding-inline: 1.15rem;
+  .project-logo,
+  .project-logo-placeholder {
+    flex: 0 0 auto;
+    width: clamp(104px, 44%, 160px);
   }
 
-  .reveal-card::part(card) { gap: 1rem; }
+  .project-logo.showgirl-logo {
+    flex: 0 0 auto;
+    width: clamp(124px, 50%, 16rem);
+  }
+
+  .project-chips {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+  }
+
+  jelly-chip {
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  /* the chip's inner padding is hardcoded at 17px, so trim it through the
+     exposed part to fit more chips per row */
+  jelly-chip::part(main) { padding-inline: 11px; }
 
   #lightbox {
     --jelly-dialog-padding: 16px;

@@ -462,9 +462,9 @@ document.querySelectorAll('jelly-dialog').forEach(jellyifyDialogClose);
  * in an <a> nests interactive content inside interactive content - invalid
  * HTML that Safari (unlike Chrome) refuses to activate on a left click.
  * Driving the navigation from a click listener avoids the nesting entirely.
- * Wired by class + data-href so every .project-bento's CTA picks this up.
+ * Wired by attribute so every jelly-button CTA (project or footer) picks this up.
  */
-document.querySelectorAll('.project-cta[data-href]').forEach((cta) => {
+document.querySelectorAll('jelly-button[data-href]').forEach((cta) => {
   // kept for any squish ancestor: such a card's pointerdown
   // would otherwise capture the pointer and swallow/retarget this click -
   // same fix as the reveal-media triggers and the on-page toggles

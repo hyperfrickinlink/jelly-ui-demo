@@ -561,6 +561,12 @@ font-size: .8rem;
   object-fit: cover;
   border-radius: var(--image-radius);
   cursor: pointer;
+  /* same fix as .lightbox-img: without this, a touch-drag starting on the
+     image itself invokes iOS Safari's native image-drag affordance, which
+     visibly slides the photo under your finger - reads exactly like the box
+     scrolling internally, but it's a drag gesture, not overflow */
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .collage-card--top-left {
@@ -618,16 +624,18 @@ font-size: .8rem;
   #caseStudy {
     padding-inline: 0;
     /* base value first, for browsers without lvh/svh support */
-    padding-top: 2.5rem;
+    padding-top: 4rem;
     /*
      * iOS Safari's floating "liquid glass" URL bar overlays content rather
      * than pushing it down - it only reserves space when fully expanded, and
      * #header is sized to the smaller 100svh so the first project below it
      * sits right at that boundary. (100lvh - 100svh) is exactly the bar's
-     * collapsible height (0 on desktop/other browsers, where lvh == svh), so
-     * this clears the bar on iOS without moving anything elsewhere.
+     * collapsible height (0 on desktop/other browsers, where lvh == svh); the
+     * flat 1.5rem on top is slack for the bar's own translucent overhang,
+     * which still crept over the chips on an iPhone Pro at just the bare
+     * (100lvh - 100svh) figure.
      */
-    padding-top: calc(2.5rem + (100lvh - 100svh));
+    padding-top: calc(2.5rem + (100lvh - 100svh) + 1.5rem);
   }
 
   .project { --bento-gutter: 1rem; }

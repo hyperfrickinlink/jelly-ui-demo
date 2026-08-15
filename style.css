@@ -94,8 +94,12 @@ a, a:visited {
   color: var(--accent);
 }
 
-html { background-color: var(--medium-neutral); padding: 0 2rem;}
-body { margin: 0; }
+/* clips the odd px or two of horizontal ink overflow that transform-based
+   decoration (the sonar rings) and the jelly library's own squish rendering
+   can bleed past their box on touch viewports - harmless on desktop, where
+   nothing actually overflows */
+html { background-color: var(--medium-neutral); padding: 0 2rem; overflow-x: hidden; }
+body { margin: 0; overflow-x: hidden; }
 
 #header {
   min-height: 100svh;
@@ -201,8 +205,7 @@ corner-card, jelly-icon-button {
 }
 
 #caseStudy {
-  padding-top: 4rem;
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
@@ -614,7 +617,17 @@ font-size: .8rem;
 
   #caseStudy {
     padding-inline: 0;
+    /* base value first, for browsers without lvh/svh support */
     padding-top: 2.5rem;
+    /*
+     * iOS Safari's floating "liquid glass" URL bar overlays content rather
+     * than pushing it down - it only reserves space when fully expanded, and
+     * #header is sized to the smaller 100svh so the first project below it
+     * sits right at that boundary. (100lvh - 100svh) is exactly the bar's
+     * collapsible height (0 on desktop/other browsers, where lvh == svh), so
+     * this clears the bar on iOS without moving anything elsewhere.
+     */
+    padding-top: calc(2.5rem + (100lvh - 100svh));
   }
 
   .project { --bento-gutter: 1rem; }

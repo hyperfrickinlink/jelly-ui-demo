@@ -380,6 +380,10 @@ font-size: .8rem;
     align-items: flex-start;
     gap: 1rem;
   }
+
+  .project-cta {
+    align-self: center;
+  }
 }
 
 /* the button shadow root redeclares its own font shorthand, so retarget

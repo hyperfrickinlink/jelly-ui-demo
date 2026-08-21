@@ -88,6 +88,26 @@
 
 * { box-sizing: border-box; }
 
+/*
+ * jelly-ui.com/package.js registers these elements asynchronously. Until a
+ * tag upgrades, it's an unstyled unknown element with no real box - so e.g.
+ * .reveal-media .shot (position: absolute; inset: 0; width/height: 100%)
+ * falls back to the viewport as its containing block and flashes fullscreen
+ * for a frame. Hide each tag until :defined so nothing paints before the
+ * component's own layout is in place.
+ */
+jelly-theme:not(:defined),
+jelly-card:not(:defined),
+jelly-chip:not(:defined),
+jelly-button:not(:defined),
+jelly-icon-button:not(:defined),
+jelly-segmented:not(:defined),
+jelly-segment:not(:defined),
+jelly-dialog:not(:defined),
+corner-card:not(:defined) {
+  visibility: hidden;
+}
+
 /* --accent is theme-driven (see wireSectionThemes() in script.js), so an
    inline link's color always matches whichever section it's scrolled into */
 a, a:visited {
